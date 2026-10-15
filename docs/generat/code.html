@@ -1,0 +1,354 @@
+<!DOCTYPE html><html class="dark" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="web_standard" name="shell-type">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..900;1,300..900&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "background": "#182028",
+            "surface": "#1e2630",
+            "surface-card": "#252f3d",
+            "surface-card-hover": "#2c3747",
+            "surface-subtle": "#1b232c",
+            "border-subtle": "#374659",
+            "border-light": "#47596f",
+            "brand-blue": "#2563eb",
+            "brand-blue-hover": "#1d4ed8",
+            "brand-blue-light": "#3b82f6",
+            "text-primary": "#f1f5f9",
+            "text-secondary": "#94a3b8",
+            "text-muted": "#64748b"
+          },
+          fontFamily: {
+            sans: ["Manrope", "sans-serif"],
+            display: ["Hanken Grotesk", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-background text-text-primary font-sans antialiased selection:bg-brand-blue selection:text-white min-h-screen flex flex-col">
+<!-- Minimalist Clean Header -->
+<header class="sticky top-0 z-50 w-full bg-surface/90 backdrop-blur-md border-b border-border-subtle">
+<div class="max-w-7xl mx-auto h-20 px-6 sm:px-8 flex items-center justify-between">
+<!-- Brand Logo Left -->
+<a class="font-display text-2xl font-semibold tracking-wider text-text-primary uppercase flex items-center gap-2" href="#">
+<span class="">ATELIER</span>
+<span class="w-1.5 h-1.5 rounded-full bg-brand-blue"></span>
+</a>
+<!-- Clean Direct Navigation -->
+<nav class="flex items-center gap-8 sm:gap-10">
+<a class="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors" href="#">
+          Inicio
+        </a>
+<a class="text-sm font-semibold text-brand-blue-light flex items-center gap-1.5" href="#">
+          Catàleg
+        </a>
+<a class="group flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-card border border-border-subtle hover:border-brand-blue transition-all" href="#">
+<span class="material-symbols-outlined text-[19px] text-text-secondary group-hover:text-brand-blue-light transition-colors">shopping_bag</span>
+<span class="text-xs font-semibold tracking-wide text-text-primary">Carret</span>
+<span class="px-1.5 py-0.5 text-[10px] font-bold rounded-full bg-brand-blue text-white">2</span>
+</a>
+</nav>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-7xl mx-auto px-6 sm:px-8 py-8 md:py-10">
+<!-- Hero / Headline & Search Bar -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-border-subtle">
+<div>
+<span class="text-xs font-semibold uppercase tracking-widest text-brand-blue-light">Nova Col·lecció 2025</span>
+<h1 class="font-display text-3xl sm:text-4xl font-semibold text-text-primary tracking-tight mt-1">Catàleg de Peces</h1>
+<p class="text-sm text-text-secondary mt-2 max-w-xl">
+          Peces atemporals dissenyades amb patrons arquitectònics i materials nobles d'alta qualitat.
+        </p>
+</div>
+<!-- Compact Search Bar -->
+<div class="relative w-full md:w-80">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-[18px] text-text-muted">search</span>
+<input class="w-full bg-surface-card border border-border-subtle rounded-lg py-2.5 pl-10 pr-4 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-brand-blue transition-colors" placeholder="Cercar peces o teixits..." type="text">
+</div>
+</div>
+<!-- Category Pills & Count Toolbar -->
+<div class="flex flex-wrap items-center justify-between gap-4 py-6">
+<!-- Filter Categories -->
+<div class="flex items-center gap-2 overflow-x-auto pb-1">
+<button class="px-4 py-2 rounded-lg bg-brand-blue text-white text-xs font-semibold tracking-wide transition-all shadow-sm">
+          Totes (48)
+        </button>
+<button class="px-4 py-2 rounded-lg bg-surface-card hover:bg-surface-card-hover border border-border-subtle text-text-secondary hover:text-text-primary text-xs font-medium transition-colors">
+          Novetats
+        </button>
+<button class="px-4 py-2 rounded-lg bg-surface-card hover:bg-surface-card-hover border border-border-subtle text-text-secondary hover:text-text-primary text-xs font-medium transition-colors">
+          Abrics
+        </button>
+<button class="px-4 py-2 rounded-lg bg-surface-card hover:bg-surface-card-hover border border-border-subtle text-text-secondary hover:text-text-primary text-xs font-medium transition-colors">
+          Camises
+        </button>
+<button class="px-4 py-2 rounded-lg bg-surface-card hover:bg-surface-card-hover border border-border-subtle text-text-secondary hover:text-text-primary text-xs font-medium transition-colors">
+          Pantalons
+        </button>
+</div>
+<!-- Summary & Sort -->
+<div class="flex items-center gap-4 text-xs text-text-secondary">
+<span class="">Mostrant <strong class="text-text-primary font-semibold">8</strong> de 48 peces</span>
+<div class="relative">
+<select class="appearance-none bg-surface-card border border-border-subtle rounded-lg py-1.5 pl-3 pr-8 text-xs text-text-primary focus:outline-none focus:border-brand-blue cursor-pointer">
+<option>Destacats</option>
+<option>Preu: menor a major</option>
+<option>Preu: major a menor</option>
+<option>Més recents</option>
+</select>
+<span class="material-symbols-outlined text-[16px] text-text-muted absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Clean Products Grid (4 columns desktop) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Product Card 1 -->
+<article class="group flex flex-col bg-surface-card rounded-xl border border-border-subtle p-3 hover:border-border-light hover:bg-surface-card-hover transition-all">
+<div class="relative w-full aspect-[3/4] overflow-hidden rounded-lg bg-surface-subtle">
+<img alt="Abrigo Sastre Cruzado Over" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPqOJAiZQ3ACAujG3FNP7B5T22RfWJjO5ZhfjI-7tSazizQUGxRh7XxxKRz_MMaotui9hfV7EXZLPIuGRl9eTp3BpWNh7lQ69B-au4bzWlUpWA_2Q81p-l7w8kg4aH33X3Yl2EAAk7QHhKFBvRnxp4nd7OTPdowFkkOMkRNDUMC7bSSmLI22ENcVriqHQOuM8Q24lk3KwWLJ-ECdjrW69IszQZRBZ4KyDPa3NG7GgxKAik-qfOdVFJug">
+<span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-brand-blue text-white text-[10px] font-bold uppercase tracking-wider">
+            Novetat
+          </span>
+<button aria-label="Favorit" class="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[17px]">favorite</span>
+</button>
+</div>
+<div class="flex flex-col flex-1 pt-3">
+<div class="flex items-center justify-between text-xs text-text-secondary">
+<span class="">100% Llana Merino</span>
+<span class="text-[11px] font-medium text-text-muted">Talles S · M · L</span>
+</div>
+<h3 class="font-display font-medium text-text-primary text-base mt-1 line-clamp-1">Abrigo Sastre Cruzado Over</h3>
+<div class="mt-auto pt-3 flex items-center justify-between">
+<span class="font-semibold text-text-primary text-base">285,00 €</span>
+<button class="px-3 py-1.5 rounded-lg bg-surface border border-border-subtle group-hover:border-brand-blue text-xs font-semibold text-text-primary hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-all flex items-center gap-1">
+              Afegir
+              <span class="material-symbols-outlined text-[14px]">add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 2 -->
+<article class="group flex flex-col bg-surface-card rounded-xl border border-border-subtle p-3 hover:border-border-light hover:bg-surface-card-hover transition-all">
+<div class="relative w-full aspect-[3/4] overflow-hidden rounded-lg bg-surface-subtle">
+<img alt="Jersey Cuello Perkins" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpdJLo4DdqjmcJHN_QV00yzoAOGSAViFfORJomMqh-Hg4VBukQakf2hElW3Bs5VfZ-dB1xbQsxQACpbfBX2jAPeaKfB1cet7h9AG1mxs6JXqnyQ7mAS_5Tt8ZtdlEpYZtvU9Vwxqfp53vyOsnn8z71faZZwYFSQVmeYAQVDlcN3y5HkW_qAm9e7jXxP6rROHnKS04LEBq8n4rGQLZarcCUxclKO3jpqq7NBGz9831j0mOCBSn6KQc1Iw">
+<span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-brand-blue text-white text-[10px] font-bold uppercase tracking-wider">
+            -20%
+          </span>
+<button aria-label="Favorit" class="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[17px]">favorite</span>
+</button>
+</div>
+<div class="flex flex-col flex-1 pt-3">
+<div class="flex items-center justify-between text-xs text-text-secondary">
+<span class="">Caixmir &amp; Seda Pura</span>
+<span class="text-[11px] font-medium text-text-muted">Talles XS · S · M</span>
+</div>
+<h3 class="font-display font-medium text-text-primary text-base mt-1 line-clamp-1">Jersey Cuello Perkins</h3>
+<div class="mt-auto pt-3 flex items-center justify-between">
+<div class="flex items-baseline gap-1.5">
+<span class="font-semibold text-brand-blue-light text-base">168,00 €</span>
+<span class="text-xs text-text-muted line-through">210,00 €</span>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-surface border border-border-subtle group-hover:border-brand-blue text-xs font-semibold text-text-primary hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-all flex items-center gap-1">
+              Afegir
+              <span class="material-symbols-outlined text-[14px]">add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 3 -->
+<article class="group flex flex-col bg-surface-card rounded-xl border border-border-subtle p-3 opacity-90 transition-all">
+<div class="relative w-full aspect-[3/4] overflow-hidden rounded-lg bg-surface-subtle">
+<img alt="Pantalón Fluido Plisado" class="w-full h-full object-cover grayscale opacity-60 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX-t6V89n05g6PaAHMpbLg1zfgiy-hGZPPdxqByuecSJW84HNES2n8RHfh5qqSl9F3DPDKFrY8AXhyrL0e2h3bI1pilxvSUSw4b5uwlkPVHe9UFzRn_Go99H8y05sopa49Rw9Qs5uZKv-Mw1SsV928iOVJR74c4LfYwgh0lQM-9o6g6xnwfOx0UsJ4RflYJ26pJZ4bG8LcQMopsqP-J3AF-USq1DYcN9eedgkgja5W1Oy7kz1pjZtiUw">
+<span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-surface/90 text-text-muted border border-border-subtle text-[10px] font-bold uppercase tracking-wider">
+            Esgotat
+          </span>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<span class="px-3 py-1 rounded bg-surface/95 border border-border-subtle text-text-secondary text-xs font-semibold uppercase tracking-wider backdrop-blur-sm shadow-sm">
+            Sense estoc
+          </span>
+</div>
+<button aria-label="Favorit" class="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[17px]">favorite</span>
+</button>
+</div>
+<div class="flex flex-col flex-1 pt-3">
+<div class="flex items-center justify-between text-xs text-text-muted">
+<span class="">Tencel &amp; Lli Orgànic</span>
+<span class="text-[11px] font-medium text-text-muted">Talles 36 · 38 · 40</span>
+</div>
+<h3 class="font-display font-medium text-text-secondary text-base mt-1 line-clamp-1">Pantalón Fluido Plisado</h3>
+<div class="mt-auto pt-3 flex items-center justify-between">
+<span class="font-semibold text-text-muted text-base">145,00 €</span>
+<button disabled="" class="px-3 py-1.5 rounded-lg bg-surface-subtle border border-border-subtle text-xs font-medium text-text-muted cursor-not-allowed flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">notifications</span>
+              Avisar-me
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 4 -->
+<article class="group flex flex-col bg-surface-card rounded-xl border border-border-subtle p-3 hover:border-border-light hover:bg-surface-card-hover transition-all">
+<div class="relative w-full aspect-[3/4] overflow-hidden rounded-lg bg-surface-subtle">
+<img alt="Camisa Popelín Estructurada" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw3UmxiiE5rhRhqjO_2WIu38fcq7PPBffuUEc2Tsvp2hnTgUhO309P80mQt5H-WBHXRuQ4s0z_RQvT7w8sufw3sOgu__sxI51aJM80mQnTZhAQXs7tVxlj9kl7MrEY9kz3U1hCpRIc7eNb6pjFD76vKpuQEAgVLmzwj5c9edMGSS_nB0S4JC-QthKPkSUgbOCp3d9QXBfCXguxyWbV7eDD4NTmShxKAUAaTCvOILpn5MRhHo2Aw7Ja1w">
+<button aria-label="Favorit" class="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[17px]">favorite</span>
+</button>
+</div>
+<div class="flex flex-col flex-1 pt-3">
+<div class="flex items-center justify-between text-xs text-text-secondary">
+<span class="">100% Cotó Egipci 120s</span>
+<span class="text-[11px] font-medium text-text-muted">Talles 36 · 38 · 40</span>
+</div>
+<h3 class="font-display font-medium text-text-primary text-base mt-1 line-clamp-1">Camisa Popelín Estructurada</h3>
+<div class="mt-auto pt-3 flex items-center justify-between">
+<span class="font-semibold text-text-primary text-base">120,00 €</span>
+<button class="px-3 py-1.5 rounded-lg bg-surface border border-border-subtle group-hover:border-brand-blue text-xs font-semibold text-text-primary hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-all flex items-center gap-1">
+              Afegir
+              <span class="material-symbols-outlined text-[14px]">add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 5 -->
+<article class="group flex flex-col bg-surface-card rounded-xl border border-border-subtle p-3 hover:border-border-light hover:bg-surface-card-hover transition-all">
+<div class="relative w-full aspect-[3/4] overflow-hidden rounded-lg bg-surface-subtle">
+<img alt="Vestido Largo Lencero" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBFiLjlR2sfXTwJNF18WSp_nT1bwT0kMI7nfw1cN_UsdPfTlZlLIJ1Iuk6pDqpfuAcv1oSxXRWgslrPv1n2f74VzavHyzZngM-6Yl7MW6fHuTgE47ZbJck_LzFETc__pgpfwzKHqSaQlIr-eRPparlSX-Wa9skh18zWGYIX3sgYSd5V-VDcm-GSk8GK5JpckHsSTlYXr4XYpDFKUPryV8VVg92B8VNr_P9vedZYfGjzTXzKP-ASuQ9SQ">
+<span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-brand-blue text-white text-[10px] font-bold uppercase tracking-wider">
+            Novetat
+          </span>
+<button aria-label="Favorit" class="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[17px]">favorite</span>
+</button>
+</div>
+<div class="flex flex-col flex-1 pt-3">
+<div class="flex items-center justify-between text-xs text-text-secondary">
+<span class="">100% Seda Mulberry</span>
+<span class="text-[11px] font-medium text-text-muted">Talles XS · S · M</span>
+</div>
+<h3 class="font-display font-medium text-text-primary text-base mt-1 line-clamp-1">Vestido Largo Lencero</h3>
+<div class="mt-auto pt-3 flex items-center justify-between">
+<span class="font-semibold text-text-primary text-base">225,00 €</span>
+<button class="px-3 py-1.5 rounded-lg bg-surface border border-border-subtle group-hover:border-brand-blue text-xs font-semibold text-text-primary hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-all flex items-center gap-1">
+              Afegir
+              <span class="material-symbols-outlined text-[14px]">add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 6 -->
+<article class="group flex flex-col bg-surface-card rounded-xl border border-border-subtle p-3 hover:border-border-light hover:bg-surface-card-hover transition-all">
+<div class="relative w-full aspect-[3/4] overflow-hidden rounded-lg bg-surface-subtle">
+<img alt="Bolso Tote Piel Minimal" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCus246DTiJw1bPOQCyKVqv4OQiA3VmuW8iS8lcSW-_oKZ3EJQU3Zrc3xuBF4u0Zq5rabZ-o47SJFdTucbqruszEpWCKdKIhGc3imvG6O_N-GR5tAoFAsrXlxQehsP2eafdFB-td-nJ8Zclr-yvKSQmDDe2hLDiE0abzwE0cw9WPFVgaqgoMNP-eIPLg1cnh_HwKVq8gDyr1KMCCFeAmL15gGiZq0JgpWW6r7w2UeLq3HczNLZcY2KbSQ">
+<button aria-label="Favorit" class="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[17px]">favorite</span>
+</button>
+</div>
+<div class="flex flex-col flex-1 pt-3">
+<div class="flex items-center justify-between text-xs text-text-secondary">
+<span class="">Pell Vacuna Certificada</span>
+<span class="text-[11px] font-medium text-text-muted">Talla Única</span>
+</div>
+<h3 class="font-display font-medium text-text-primary text-base mt-1 line-clamp-1">Bolso Tote Piel Minimal</h3>
+<div class="mt-auto pt-3 flex items-center justify-between">
+<span class="font-semibold text-text-primary text-base">195,00 €</span>
+<button class="px-3 py-1.5 rounded-lg bg-surface border border-border-subtle group-hover:border-brand-blue text-xs font-semibold text-text-primary hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-all flex items-center gap-1">
+              Afegir
+              <span class="material-symbols-outlined text-[14px]">add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 7 -->
+<article class="group flex flex-col bg-surface-card rounded-xl border border-border-subtle p-3 hover:border-border-light hover:bg-surface-card-hover transition-all">
+<div class="relative w-full aspect-[3/4] overflow-hidden rounded-lg bg-surface-subtle">
+<img alt="Blazer Entallada Lana Fría" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkpAt2hG7vQJ6_gfKuvLPEEcwCOzGcuEd3NSlORrFP5Z9hZcaJYslxThjJdU8h-OnDdNgZjMI8ncfqvfIpQJ2IadcRdSz2j9t9eQCeabO1GTdIwe9gcy3fqBPRpndd1J7T9YsTkYCWPh3B822e-secM2YDvp-EqFppBDGh7cIJBNoQS3YgxD1CZD2Wpt57mUOjOD36L_KESQhyoPilveYNsz-Y10j8Ld10BZ7ypXV_zGAYb_uRoJW1qw">
+<button aria-label="Favorit" class="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[17px]">favorite</span>
+</button>
+</div>
+<div class="flex flex-col flex-1 pt-3">
+<div class="flex items-center justify-between text-xs text-text-secondary">
+<span class="">Llana Pinta Super 110s</span>
+<span class="text-[11px] font-medium text-text-muted">Talles 36 · 38 · 40</span>
+</div>
+<h3 class="font-display font-medium text-text-primary text-base mt-1 line-clamp-1">Blazer Entallada Lana Fría</h3>
+<div class="mt-auto pt-3 flex items-center justify-between">
+<span class="font-semibold text-text-primary text-base">240,00 €</span>
+<button class="px-3 py-1.5 rounded-lg bg-surface border border-border-subtle group-hover:border-brand-blue text-xs font-semibold text-text-primary hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-all flex items-center gap-1">
+              Afegir
+              <span class="material-symbols-outlined text-[14px]">add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 8 -->
+<article class="group flex flex-col bg-surface-card rounded-xl border border-border-subtle p-3 hover:border-border-light hover:bg-surface-card-hover transition-all">
+<div class="relative w-full aspect-[3/4] overflow-hidden rounded-lg bg-surface-subtle">
+<img alt="Sobrecamisa Acolchada Plumón" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtASeLUpJKC7FIkYfErWSIcMOKpmtXkvOTLLAvcEPGi0-9wxthtUPSovCRDbvuENNq2a2Zl_BL2TW-z1Xw3Tdi20SfChej8jmN-01LingBQAQ76Vda6gerkQF47gGft3HOFy1uyzrgZ0Ycr2hUUgKKYdeIhaCJF_FkSGCbVVMxFpoGa3gJKg0UC_N1p17jdqPC1ntl_aJbmiVjUPtyQB498BU6J1H6RU6Siq7ikke09AwYTuVDAuvRnw">
+<span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-brand-blue text-white text-[10px] font-bold uppercase tracking-wider">
+            Bestseller
+          </span>
+<button aria-label="Favorit" class="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[17px]">favorite</span>
+</button>
+</div>
+<div class="flex flex-col flex-1 pt-3">
+<div class="flex items-center justify-between text-xs text-text-secondary">
+<span class="">Nailó Reciclat &amp; Plomissol</span>
+<span class="text-[11px] font-medium text-text-muted">Talles S · M · L · XL</span>
+</div>
+<h3 class="font-display font-medium text-text-primary text-base mt-1 line-clamp-1">Sobrecamisa Acolchada Plumón</h3>
+<div class="mt-auto pt-3 flex items-center justify-between">
+<span class="font-semibold text-text-primary text-base">175,00 €</span>
+<button class="px-3 py-1.5 rounded-lg bg-surface border border-border-subtle group-hover:border-brand-blue text-xs font-semibold text-text-primary hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-all flex items-center gap-1">
+              Afegir
+              <span class="material-symbols-outlined text-[14px]">add</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+<!-- Minimal Pagination / Load More -->
+
+</main>
+<!-- Clean, Lightweight Footer -->
+<footer class="mt-16 w-full bg-surface border-t border-border-subtle">
+<div class="max-w-7xl mx-auto px-6 sm:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-text-secondary">
+<div class="flex items-center gap-2">
+<span class="font-display font-semibold tracking-wider text-text-primary">ATELIER</span>
+<span class="">— Disseny contemporani i artesania noble</span>
+</div>
+<div class="flex items-center gap-6">
+<a class="hover:text-text-primary transition-colors" href="#">Privacitat</a>
+<a class="hover:text-text-primary transition-colors" href="#">Condicions</a>
+<a class="hover:text-text-primary transition-colors" href="#">Contacte</a>
+</div>
+<div class="text-text-muted">
+        © 2025 ATELIER STUDIO. Tots els drets reservats.
+      </div>
+</div>
+</footer>
+
+
+</body></html>
