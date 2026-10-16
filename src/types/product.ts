@@ -1,16 +1,12 @@
-export interface ProductBadge {
-  text: string;
-  variant?: 'primary' | 'muted';
-}
-
 export interface Product {
   id: string;
-  name: string;
-  category: string;
-  precio: number;
-  badge?: ProductBadge;
+  nom: string;
+  categoria: string;
+  preu: number;
+  descripcio: string;
+  estoc: number;
   hayStock: boolean;
-  image: string;
+  imatge: string;
 }
 
 // Una línia del carro: el producte i quantes unitats se'n volen.

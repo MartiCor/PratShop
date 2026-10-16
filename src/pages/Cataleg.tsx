@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import styles from './Cataleg.module.css';
 import { INITIAL_PRODUCTS } from '../data/products';
 import type { CategoryKey, LiniaCarro, Product, SortOption } from '../types/product';
+import { TargetaProducte } from '../components';
 
 // Clau amb què es desa el carro al navegador.
 const CLAU = 'pratshop-carro';
@@ -29,14 +30,10 @@ export const Cataleg: React.FC<CatalegProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<CategoryKey>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortBy, setSortBy] = useState<SortOption>('featured');
-  const [favorites, setFavorites] = useState<Set<string>>(new Set());
 
   // L'estat del carro viu aquí (o al pare si es passa per propietats)
   const [carro, setCarro] = useState<LiniaCarro[]>(carregaCarro);
 
-  // Estat derivat: es calcula a cada dibuixat, no es guarda a part.
-  const unitatsCalculades = carro.reduce((suma, linia) => suma + linia.unitats, 0);
-  const unitats = unitatsProp ?? unitatsCalculades;
 
   // Cada cop que canvia el carro, es desa al navegador.
   useEffect(() => {
@@ -44,7 +41,7 @@ export const Cataleg: React.FC<CatalegProps> = ({
   }, [carro]);
 
   function afegeix(producte: Product) {
-    if (!producte.hayStock) return;
+    if (producte.estoc === 0) return;
 
     if (onAfegirProp) {
       onAfegirProp(producte);
@@ -64,26 +61,13 @@ export const Cataleg: React.FC<CatalegProps> = ({
     });
   }
 
-  const toggleFavorite = (productId: string, e: React.MouseEvent) => {
-    e.stopPropagation();
-    setFavorites((prev) => {
-      const next = new Set(prev);
-      if (next.has(productId)) {
-        next.delete(productId);
-      } else {
-        next.add(productId);
-      }
-      return next;
-    });
-  };
-
   // Filter and sort items
   const filteredProducts = useMemo(() => {
     return products
       .filter((product) => {
         // Category filter
         if (selectedCategory !== 'all') {
-          if (product.category !== selectedCategory) {
+          if (product.categoria !== selectedCategory) {
             return false;
           }
         }
@@ -91,7 +75,7 @@ export const Cataleg: React.FC<CatalegProps> = ({
         // Search query filter
         if (searchQuery.trim() !== '') {
           const query = searchQuery.toLowerCase();
-          const matchName = product.name.toLowerCase().includes(query);
+          const matchName = product.nom.toLowerCase().includes(query);
           if (!matchName) return false;
         }
 
@@ -99,10 +83,10 @@ export const Cataleg: React.FC<CatalegProps> = ({
       })
       .sort((a, b) => {
         if (sortBy === 'price-asc') {
-          return a.precio - b.precio;
+          return a.preu - b.preu;
         }
         if (sortBy === 'price-desc') {
-          return b.precio - a.precio;
+          return b.preu - a.preu;
         }
         if (sortBy === 'newest') {
           return Number(b.id) - Number(a.id);
@@ -111,44 +95,8 @@ export const Cataleg: React.FC<CatalegProps> = ({
       });
   }, [products, selectedCategory, searchQuery, sortBy]);
 
-  const formatPrice = (value: number) => {
-    return value.toLocaleString('es-ES', {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }) + ' €';
-  };
-
   return (
     <div className={styles.pageWrapper}>
-      {/* Minimalist Clean Header */}
-      <header className={styles.header}>
-        <div className={styles.headerContainer}>
-          {/* Brand Logo */}
-          <a href="#" className={styles.brandLogo}>
-            <span>ATELIER</span>
-            <span className={styles.brandDot}></span>
-          </a>
-
-          {/* Clean Direct Navigation */}
-          <nav className={styles.navigation}>
-            <a href="#" className={styles.navLink}>
-              Inicio
-            </a>
-            <a href="#" className={styles.navLinkActive}>
-              Catàleg
-            </a>
-            <a href="#" className={styles.cartButton}>
-              <span className={`material-symbols-outlined ${styles.cartIcon}`}>
-                shopping_bag
-              </span>
-              <span className={styles.cartLabel}>Carret</span>
-              {/* Renderitzat condicional: el globus només surt si hi ha alguna unitat */}
-              {unitats > 0 && <span className={styles.cartCount}>{unitats}</span>}
-            </a>
-          </nav>
-        </div>
-      </header>
-
       {/* Main Content */}
       <main className={styles.mainContent}>
         {/* Hero / Headline & Search Bar */}
@@ -244,112 +192,13 @@ export const Cataleg: React.FC<CatalegProps> = ({
         {/* Products Grid */}
         {filteredProducts.length > 0 ? (
           <div className={styles.productsGrid}>
-            {filteredProducts.map((product) => {
-              const isFav = favorites.has(product.id);
-              return (
-                <article key={product.id} className={styles.productCard}>
-                  {/* Image container */}
-                  <div className={styles.imageWrapper}>
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className={`${styles.productImage} ${
-                        !product.hayStock ? styles.imageOutOfStock : ''
-                      }`}
-                      loading="lazy"
-                    />
-
-                    {/* Badge */}
-                    {product.badge && (
-                      <span
-                        className={`${styles.productBadge} ${
-                          product.badge.variant === 'muted'
-                            ? styles.badgeMuted
-                            : styles.badgePrimary
-                        }`}
-                      >
-                        {product.badge.text}
-                      </span>
-                    )}
-
-                    {/* Out of stock overlay */}
-                    {!product.hayStock && (
-                      <div className={styles.outOfStockOverlay}>
-                        <span className={styles.outOfStockPill}>
-                          Sense estoc
-                        </span>
-                      </div>
-                    )}
-
-                    {/* Favorite Button */}
-                    <button
-                      type="button"
-                      aria-label="Favorit"
-                      onClick={(e) => toggleFavorite(product.id, e)}
-                      className={`${styles.favoriteButton} ${
-                        isFav ? styles.favoriteActive : ''
-                      }`}
-                    >
-                      <span
-                        className={`material-symbols-outlined ${styles.favoriteIcon}`}
-                        style={{
-                          fontVariationSettings: isFav ? "'FILL' 1" : "'FILL' 0",
-                        }}
-                      >
-                        favorite
-                      </span>
-                    </button>
-                  </div>
-
-                  {/* Product Details */}
-                  <div className={styles.productDetails}>
-                    <h3 className={styles.productName} title={product.name}>
-                      {product.name}
-                    </h3>
-
-                    {/* Footer / Price & Action */}
-                    <div className={styles.productFooter}>
-                      <div className={styles.pricing}>
-                        <span className={styles.price}>
-                          {formatPrice(product.precio)}
-                        </span>
-                      </div>
-
-                      {product.hayStock ? (
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            afegeix(product);
-                          }}
-                          className={styles.addButton}
-                        >
-                          Afegir
-                          <span
-                            className={`material-symbols-outlined ${styles.addButtonIcon}`}
-                          >
-                            add
-                          </span>
-                        </button>
-                      ) : (
-                        <button
-                          type="button"
-                          disabled
-                          className={styles.notifyButton}
-                        >
-                          <span
-                            className={`material-symbols-outlined ${styles.notifyButtonIcon}`}
-                          >
-                            notifications
-                          </span>
-                          Avisar-me
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
+            {filteredProducts.map((producte) => (
+              <TargetaProducte
+                key={producte.id}
+                producte={producte}
+                onAfegir={afegeix}
+              />
+            ))}
           </div>
         ) : (
           <div className={styles.emptyState}>
