@@ -115,7 +115,7 @@ export default function Compra({ carro, onFinalitzaCompra }: Props) {
               type="text"
               value={dades.nom}
               onChange={handleChange}
-              placeholder="Ex. Maria Garcia"
+              placeholder="Ex. Martí Corrales"
               className={clsx(estils.input, errors.nom && estils.inputError)}
             />
             {errors.nom && (
@@ -134,7 +134,7 @@ export default function Compra({ carro, onFinalitzaCompra }: Props) {
               type="email"
               value={dades.correu}
               onChange={handleChange}
-              placeholder="Ex. maria@example.cat"
+              placeholder="Ex. nom@example.cat"
               className={clsx(estils.input, errors.correu && estils.inputError)}
             />
             {errors.correu && (

@@ -22,7 +22,6 @@ const CATEGORIES: { clau: CategoryKey; nom: string }[] = [
 export default function Cataleg({ onAfegir }: Props) {
   const [params, setParams] = useSearchParams();
 
-  // El text de cerca viu a la URL (?cerca=...)
   const cerca = params.get('cerca') ?? '';
   const categoria = (params.get('categoria') as CategoryKey) ?? 'all';
 
