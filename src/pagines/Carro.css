@@ -1,0 +1,97 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--espai-6);
+}
+
+.titol {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: var(--espai-6);
+}
+
+.buit {
+  text-align: center;
+  padding: var(--espai-12) var(--espai-4);
+  background-color: var(--surface-card);
+  border-radius: var(--radi-lg);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espai-3);
+}
+
+.taula {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--surface-card);
+  border-radius: var(--radi-lg);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  margin-bottom: var(--espai-6);
+}
+
+.taula th,
+.taula td {
+  padding: var(--espai-4);
+  text-align: left;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.taula th {
+  background-color: var(--surface);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.producteFila {
+  display: flex;
+  align-items: center;
+  gap: var(--espai-3);
+  font-weight: 600;
+}
+
+.miniFoto {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radi-md);
+  object-fit: cover;
+}
+
+.subtotal {
+  font-weight: 700;
+}
+
+.botoTreure {
+  background: none;
+  border: none;
+  color: var(--color-error);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: var(--espai-1) var(--espai-2);
+}
+
+.peuCarro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--espai-4);
+  flex-wrap: wrap;
+}
+
+.totalBloc {
+  display: flex;
+  align-items: center;
+  gap: var(--espai-4);
+}
+
+.totalText {
+  font-size: 1.25rem;
+}
+
+.totalText strong {
+  color: var(--brand-blue-light);
+}

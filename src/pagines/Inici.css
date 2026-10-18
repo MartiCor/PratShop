@@ -1,0 +1,65 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--espai-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espai-8);
+}
+
+.hero {
+  padding: var(--espai-6) 0 var(--espai-8);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.heroTag {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--brand-blue-light);
+}
+
+.heroTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: var(--espai-1);
+}
+
+.heroText {
+  max-width: 36rem;
+  margin-top: var(--espai-3);
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.heroButton {
+  display: inline-block;
+  margin-top: var(--espai-4);
+  padding: 0.7rem 1.4rem;
+  border-radius: var(--radi-md);
+  background-color: var(--brand-blue);
+  color: var(--color-blanc);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.heroButton:hover {
+  background-color: var(--brand-blue-hover);
+}
+
+.seccio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espai-4);
+}
+
+.seccioTitol {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.graella {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--espai-6);
+}

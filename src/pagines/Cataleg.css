@@ -1,0 +1,87 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--espai-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espai-6);
+}
+
+.capcalera {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--espai-4);
+  flex-wrap: wrap;
+  padding-bottom: var(--espai-4);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.titol {
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.subtitol {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-top: 0.2rem;
+}
+
+.cercador {
+  padding: 0.6rem 1rem;
+  border-radius: var(--radi-md);
+  border: 1px solid var(--border-subtle);
+  background-color: var(--surface-card);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.9rem;
+  width: 100%;
+  max-width: 280px;
+}
+
+.categories {
+  display: flex;
+  gap: var(--espai-2);
+  flex-wrap: wrap;
+}
+
+.botoCategoria {
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radi-md);
+  border: 1px solid var(--border-subtle);
+  background-color: var(--surface-card);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.botoCategoria:hover {
+  background-color: var(--surface-card-hover);
+  color: var(--text-primary);
+}
+
+.actiu {
+  background-color: var(--brand-blue);
+  border-color: var(--brand-blue);
+  color: var(--color-blanc);
+}
+
+.actiu:hover {
+  background-color: var(--brand-blue-hover);
+}
+
+.graella {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--espai-6);
+}
+
+.senseResultats {
+  text-align: center;
+  padding: var(--espai-12);
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}

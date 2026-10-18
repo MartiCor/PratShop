@@ -1,6 +1,5 @@
-export * from './ProductCard';
-export { default as TargetaProducte } from './ProductCard';
-export { default as ProductCard } from './ProductCard';
-export * from './Header';
-export { default as Header } from './Header';
-export { default as Capcalera } from './Header';
+export { default as Disposicio } from './Disposicio';
+export { default as Capcalera } from './Capcalera';
+export { default as Boto } from './Boto';
+export { default as TargetaProducte } from './TargetaProducte';
+export { default as SelectorQuantitat } from './SelectorQuantitat';

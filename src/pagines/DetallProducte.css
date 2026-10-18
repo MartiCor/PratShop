@@ -1,0 +1,95 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--espai-6);
+}
+
+.botoTorna {
+  background: none;
+  border: none;
+  color: var(--brand-blue-light);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: var(--espai-6);
+  padding: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espai-8);
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.imatge {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radi-lg);
+  border: 1px solid var(--border-subtle);
+  background-color: var(--surface-card);
+}
+
+.esgotada {
+  filter: grayscale(0.8) opacity(0.6);
+}
+
+.detalls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espai-3);
+}
+
+.categoria {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--brand-blue-light);
+  font-weight: 700;
+}
+
+.nom {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.preu {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.descripcio {
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.textEstoc {
+  color: var(--color-exit);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.textSenseEstoc {
+  color: var(--color-error);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.compraBloc {
+  display: flex;
+  align-items: center;
+  gap: var(--espai-4);
+  margin-top: var(--espai-4);
+}
+
+.missatgeAfegit {
+  color: var(--color-exit);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: var(--espai-2);
+}

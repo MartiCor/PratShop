@@ -1,51 +1,112 @@
 import { useState, useEffect } from 'react';
-import Header from './components/Header';
-import Cataleg from './pages/Cataleg';
-import type { LiniaCarro, Product } from './types/product';
+import { Route, Routes } from 'react-router';
+import Disposicio from './components/Disposicio';
+import Inici from './pagines/Inici';
+import Cataleg from './pagines/Cataleg';
+import DetallProducte from './pagines/DetallProducte';
+import Carro from './pagines/Carro';
+import Compra from './pagines/Compra';
+import NoTrobada from './pagines/NoTrobada';
+import type { DadesCompra, LiniaCarro, Producte } from './tipus';
 
-// Clau amb què es desa el carro al navegador.
-const CLAU = 'pratshop-carro';
+// Clau amb què es desa el carret al navegador
+const CLAU_STORAGE = 'pratshop-carro-v1';
 
-function carregaCarro(): LiniaCarro[] {
-  try {
-    const desat = localStorage.getItem(CLAU);
-    return desat ? (JSON.parse(desat) as LiniaCarro[]) : [];
-  } catch {
-    return [];
-  }
-}
+export default function App() {
+  // Lectura inicial de localStorage dins d'un try/catch
+  const [carro, setCarro] = useState<LiniaCarro[]>(() => {
+    try {
+      const desat = localStorage.getItem(CLAU_STORAGE);
+      return desat ? (JSON.parse(desat) as LiniaCarro[]) : [];
+    } catch (error) {
+      console.error('Error llegint el carret de localStorage', error);
+      return [];
+    }
+  });
 
-function App() {
-  const [carro, setCarro] = useState<LiniaCarro[]>(carregaCarro);
-
+  // Persistència automàtica amb useEffect
   useEffect(() => {
-    localStorage.setItem(CLAU, JSON.stringify(carro));
+    try {
+      localStorage.setItem(CLAU_STORAGE, JSON.stringify(carro));
+    } catch (error) {
+      console.error('Error desant el carret a localStorage', error);
+    }
   }, [carro]);
 
-  function afegeix(producte: Product) {
+  // Accions del carret
+  function afegeixProducte(producte: Producte, unitatsAAfegir = 1) {
     if (producte.estoc === 0) return;
 
     setCarro((anterior) => {
-      const jaHiEs = anterior.find((linia) => linia.producte.id === producte.id);
-      if (jaHiEs) {
+      const existent = anterior.find((l) => l.producte.id === producte.id);
+      if (existent) {
+        const novesUnitats = Math.min(producte.estoc, existent.unitats + unitatsAAfegir);
         return anterior.map((linia) =>
           linia.producte.id === producte.id
-            ? { ...linia, unitats: linia.unitats + 1 }
+            ? { ...linia, unitats: novesUnitats }
             : linia,
         );
       }
-      return [...anterior, { producte, unitats: 1 }];
+      return [
+        ...anterior,
+        { producte, unitats: Math.min(producte.estoc, unitatsAAfegir) },
+      ];
     });
   }
 
-  const unitats = carro.reduce((suma, linia) => suma + linia.unitats, 0);
+  function canviaUnitats(id: string, novesUnitats: number) {
+    setCarro((anterior) =>
+      anterior.map((linia) => {
+        if (linia.producte.id !== id) return linia;
+        const ajustat = Math.max(1, Math.min(linia.producte.estoc, novesUnitats));
+        return { ...linia, unitats: ajustat };
+      }),
+    );
+  }
+
+  function eliminaLinia(id: string) {
+    setCarro((anterior) => anterior.filter((l) => l.producte.id !== id));
+  }
+
+  function buidaCarret() {
+    setCarro([]);
+  }
+
+  // Quan la compra és correcta, es buida el carret
+  function finalitzaCompra(_dadesClient: DadesCompra) {
+    setCarro([]);
+  }
+
+  // Unitats totals calculades
+  const unitatsTotals = carro.reduce((suma, linia) => suma + linia.unitats, 0);
 
   return (
-    <>
-      <Header unitatsAlCarro={unitats} />
-      <Cataleg onAfegir={afegeix} unitatsAlCarro={unitats} />
-    </>
+    <Routes>
+      <Route element={<Disposicio unitatsAlCarro={unitatsTotals} />}>
+        <Route path="/" element={<Inici onAfegir={afegeixProducte} />} />
+        <Route path="/cataleg" element={<Cataleg onAfegir={afegeixProducte} />} />
+        <Route
+          path="/producte/:id"
+          element={<DetallProducte onAfegir={afegeixProducte} />}
+        />
+        <Route
+          path="/carro"
+          element={
+            <Carro
+              carro={carro}
+              onCanviaUnitats={canviaUnitats}
+              onEsborra={eliminaLinia}
+              onBuida={buidaCarret}
+            />
+          }
+        />
+        <Route
+          path="/compra"
+          element={<Compra carro={carro} onFinalitzaCompra={finalitzaCompra} />}
+        />
+        {/* Les URL desconegudes van a la 404 */}
+        <Route path="*" element={<NoTrobada />} />
+      </Route>
+    </Routes>
   );
 }
-
-export default App;

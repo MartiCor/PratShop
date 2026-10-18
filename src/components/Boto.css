@@ -1,0 +1,50 @@
+.boto {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espai-2);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radi-md);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: opacity 0.15s ease;
+}
+
+.boto:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.primari {
+  background-color: var(--brand-blue);
+  color: var(--color-blanc);
+  border-color: var(--brand-blue);
+}
+
+.primari:hover:not(:disabled) {
+  background-color: var(--brand-blue-hover);
+}
+
+.secundari {
+  background-color: var(--surface-card);
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+}
+
+.secundari:hover:not(:disabled) {
+  background-color: var(--surface-card-hover);
+}
+
+.perill {
+  background-color: var(--color-error-bg);
+  color: var(--color-error);
+  border-color: var(--color-error);
+}
+
+.perill:hover:not(:disabled) {
+  background-color: var(--color-error);
+  color: var(--color-blanc);
+}

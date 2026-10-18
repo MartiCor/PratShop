@@ -1,0 +1,92 @@
+.targeta {
+  background-color: var(--surface-card);
+  border-radius: var(--radi-lg);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.esgotada {
+  opacity: 0.8;
+}
+
+.imatgeLink {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: var(--surface-subtle);
+}
+
+.foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.esgotada .foto {
+  filter: grayscale(0.8);
+}
+
+.etiquetaEsgotat {
+  position: absolute;
+  top: var(--espai-3);
+  right: var(--espai-3);
+  background-color: var(--color-error);
+  color: var(--color-blanc);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radi-ple);
+  text-transform: uppercase;
+}
+
+.cos {
+  padding: var(--espai-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espai-2);
+  flex: 1;
+}
+
+.categoria {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--brand-blue-light);
+}
+
+.titolLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nom {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.preu {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: auto;
+}
+
+.estoc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.senseEstoc {
+  font-size: 0.8rem;
+  color: var(--color-error);
+  font-weight: 600;
+}
+
+.boto {
+  width: 100%;
+  margin-top: var(--espai-2);
+}

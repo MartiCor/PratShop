@@ -1,75 +1,58 @@
-# React + TypeScript + Vite
+# PratShop v1 — Catàleg, Carro i Compra
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Pràctica avaluable de l'AEA1 per al mòdul **0488 Desenvolupament d'interfícies** (2n curs de CFGS DAM, grup DAM2 - Prat Educació).
 
-Currently, two official plugins are available:
+## 🛍️ Temàtica
+Botiga en línia de moda i complements contemporanis. Disposa d'un catàleg amb diferents categories (abrics, camises, jerseis, pantalons, vestits i complements), control d'estoc en temps real, cistella de la compra persistent i formulari de comanda validat.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Instal·lació i execució
+Per executar el projecte en local:
 
-## React Compiler
+```bash
+# 1. Instal·lar les dependències
+npm install
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# 2. Executar el servidor de desenvolupament
+npm run dev
 
-## Expanding the ESLint configuration
+# 3. Comprovar que compila sense errors
+npm run build
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+# 4. Passar el linter
+npm run lint
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠️ Tecnologies utilitzades
+- **React 19** + **TypeScript**
+- **Vite** com a entorn de construcció
+- **React Router 8** per a la navegació SPA
+- **CSS Modules** amb tokens de disseny a `:root` (sense colors hexadecimals fora de root)
+- **clsx** per a la gestió d'estats visuals (variants normals i esgotades)
+- **LocalStorage** per a la persistència del carret de compra
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+## 📁 Estructura del projecte
 ```
+src/
+├── dades/
+│   └── productes.ts       # 12 productes amb 6 categories i 2 esgotats
+├── components/
+│   ├── Boto.tsx           # Botó reutilitzable amb variants
+│   ├── Capcalera.tsx      # Menú de navegació i comptador del carret
+│   ├── Disposicio.tsx     # Layout comú amb <Outlet />
+│   ├── SelectorQuantitat.tsx  # Selector d'unitats amb límits d'estoc
+│   └── TargetaProducte.tsx    # Targeta de producte amb estat esgotat
+├── pagines/
+│   ├── Inici.tsx          # Pàgina principal amb productes destacats
+│   ├── Cataleg.tsx        # Catàleg amb cerca a la URL i filtre per categoria
+│   ├── DetallProducte.tsx # Fitxa de producte (/producte/:id)
+│   ├── Carro.tsx          # Gestió del carret, unitats i totals
+│   ├── Compra.tsx         # Formulari de compra controlat i validat
+│   └── NoTrobada.tsx      # Pàgina 404 per a rutes inexistents
+├── tipus.ts               # Tipus TypeScript de l'aplicació (sense cap any)
+├── validacio.ts           # Lògica de validació del formulari de compra
+├── App.tsx                # Estat aixecat del carret i definició de rutes
+└── index.css              # Tokens globals de disseny
+```
+
+## 🎨 Disseny previ
+- La documentació i les instruccions de disseny generat es troben a la carpeta `docs/generat/prompts.md`.
