@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import clsx from 'clsx';
 import type { Producte } from '../tipus';
 import Boto from './Boto';
-import './TargetaProducte.css';
+import estils from './TargetaProducte.module.css';
 
 type Props = {
   producte: Producte;
@@ -13,25 +13,25 @@ export default function TargetaProducte({ producte, onAfegir }: Props) {
   const esgotat = producte.estoc === 0;
 
   return (
-    <article className={clsx('targeta', esgotat && 'esgotada')}>
-      <Link to={`/producte/${producte.id}`} className="imatgeLink">
+    <article className={clsx(estils.targeta, esgotat && estils.esgotada)}>
+      <Link to={`/producte/${producte.id}`} className={estils.imatgeLink}>
         <img
           src={producte.imatge}
           alt={producte.nom}
-          className="foto"
+          className={estils.foto}
           loading="lazy"
         />
-        {esgotat && <span className="etiquetaEsgotat">Esgotat</span>}
+        {esgotat && <span className={estils.etiquetaEsgotat}>Esgotat</span>}
       </Link>
 
-      <div className="cos">
-        <span className="categoria">{producte.categoria}</span>
-        <Link to={`/producte/${producte.id}`} className="titolLink">
-          <h3 className="nom">{producte.nom}</h3>
+      <div className={estils.cos}>
+        <span className={estils.categoria}>{producte.categoria}</span>
+        <Link to={`/producte/${producte.id}`} className={estils.titolLink}>
+          <h3 className={estils.nom}>{producte.nom}</h3>
         </Link>
-        <p className="preu">{producte.preu.toFixed(2)} €</p>
+        <p className={estils.preu}>{producte.preu.toFixed(2)} €</p>
 
-        <p className={esgotat ? 'senseEstoc' : 'estoc'}>
+        <p className={esgotat ? estils.senseEstoc : estils.estoc}>
           {esgotat ? 'Sense estoc' : `${producte.estoc} disponibles`}
         </p>
 
@@ -39,7 +39,7 @@ export default function TargetaProducte({ producte, onAfegir }: Props) {
           variant={esgotat ? 'secundari' : 'primari'}
           disabled={esgotat}
           onClick={() => onAfegir(producte)}
-          className="boto"
+          className={estils.boto}
         >
           {esgotat ? 'Esgotat' : 'Afegir al carret'}
         </Boto>

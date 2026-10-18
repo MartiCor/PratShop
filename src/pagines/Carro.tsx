@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import SelectorQuantitat from '../components/SelectorQuantitat';
 import Boto from '../components/Boto';
 import type { LiniaCarro } from '../tipus';
-import './Carro.css';
+import estils from './Carro.module.css';
 
 type Props = {
   carro: LiniaCarro[];
@@ -20,8 +20,8 @@ export default function Carro({ carro, onCanviaUnitats, onEsborra, onBuida }: Pr
 
   if (carro.length === 0) {
     return (
-      <div className="container">
-        <div className="buit">
+      <div className={estils.container}>
+        <div className={estils.buit}>
           <h2>El teu carret és buit</h2>
           <p>Encara no has afegit cap producte.</p>
           <Link to="/cataleg">
@@ -33,10 +33,10 @@ export default function Carro({ carro, onCanviaUnitats, onEsborra, onBuida }: Pr
   }
 
   return (
-    <div className="container">
-      <h1 className="titol">El teu carret de compra</h1>
+    <div className={estils.container}>
+      <h1 className={estils.titol}>El teu carret de compra</h1>
 
-      <table className="taula">
+      <table className={estils.taula}>
         <thead>
           <tr>
             <th>Producte</th>
@@ -50,11 +50,11 @@ export default function Carro({ carro, onCanviaUnitats, onEsborra, onBuida }: Pr
           {carro.map((linia) => (
             <tr key={linia.producte.id}>
               <td>
-                <div className="producteFila">
+                <div className={estils.producteFila}>
                   <img
                     src={linia.producte.imatge}
                     alt={linia.producte.nom}
-                    className="miniFoto"
+                    className={estils.miniFoto}
                   />
                   <span>{linia.producte.nom}</span>
                 </div>
@@ -68,13 +68,13 @@ export default function Carro({ carro, onCanviaUnitats, onEsborra, onBuida }: Pr
                   onCanvi={(nou) => onCanviaUnitats(linia.producte.id, nou)}
                 />
               </td>
-              <td className="subtotal">
+              <td className={estils.subtotal}>
                 {(linia.producte.preu * linia.unitats).toFixed(2)} €
               </td>
               <td>
                 <button
                   type="button"
-                  className="botoTreure"
+                  className={estils.botoTreure}
                   onClick={() => onEsborra(linia.producte.id)}
                   aria-label="Eliminar producte"
                 >
@@ -86,13 +86,13 @@ export default function Carro({ carro, onCanviaUnitats, onEsborra, onBuida }: Pr
         </tbody>
       </table>
 
-      <div className="peuCarro">
+      <div className={estils.peuCarro}>
         <Boto variant="perill" onClick={onBuida}>
           Buidar carret
         </Boto>
 
-        <div className="totalBloc">
-          <span className="totalText">
+        <div className={estils.totalBloc}>
+          <span className={estils.totalText}>
             Total: <strong>{total.toFixed(2)} €</strong>
           </span>
           <Link to="/compra">

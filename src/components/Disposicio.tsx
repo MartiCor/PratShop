@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
 import Capcalera from './Capcalera';
-import './Disposicio.css';
+import estils from './Disposicio.module.css';
 
 type Props = {
   unitatsAlCarro: number;
@@ -8,9 +8,9 @@ type Props = {
 
 export default function Disposicio({ unitatsAlCarro }: Props) {
   return (
-    <div className="layout">
+    <div className={estils.layout}>
       <Capcalera unitatsAlCarro={unitatsAlCarro} />
-      <main className="main">
+      <main className={estils.main}>
         <Outlet />
       </main>
     </div>

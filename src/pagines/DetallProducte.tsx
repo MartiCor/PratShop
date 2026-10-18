@@ -4,7 +4,7 @@ import { PRODUCTES } from '../dades/productes';
 import SelectorQuantitat from '../components/SelectorQuantitat';
 import Boto from '../components/Boto';
 import type { Producte } from '../tipus';
-import './DetallProducte.css';
+import estils from './DetallProducte.module.css';
 
 type Props = {
   onAfegir: (producte: Producte, unitats?: number) => void;
@@ -33,30 +33,34 @@ export default function DetallProducte({ onAfegir }: Props) {
   }
 
   return (
-    <div className="container">
-      <button type="button" onClick={() => navigate(-1)} className="botoTorna">
+    <div className={estils.container}>
+      <button
+        type="button"
+        onClick={() => navigate(-1)}
+        className={estils.botoTorna}
+      >
         ← Torna enrere
       </button>
 
-      <div className="grid">
+      <div className={estils.grid}>
         <img
           src={producte.imatge}
           alt={producte.nom}
-          className={`imatge ${esgotat ? 'esgotada' : ''}`.trim()}
+          className={`${estils.imatge} ${esgotat ? estils.esgotada : ''}`.trim()}
         />
 
-        <div className="detalls">
-          <span className="categoria">{producte.categoria}</span>
-          <h1 className="nom">{producte.nom}</h1>
-          <p className="preu">{producte.preu.toFixed(2)} €</p>
-          <p className="descripcio">{producte.descripcio}</p>
+        <div className={estils.detalls}>
+          <span className={estils.categoria}>{producte.categoria}</span>
+          <h1 className={estils.nom}>{producte.nom}</h1>
+          <p className={estils.preu}>{producte.preu.toFixed(2)} €</p>
+          <p className={estils.descripcio}>{producte.descripcio}</p>
 
-          <p className={esgotat ? 'textSenseEstoc' : 'textEstoc'}>
+          <p className={esgotat ? estils.textSenseEstoc : estils.textEstoc}>
             {esgotat ? 'Sense estoc disponible' : `${producte.estoc} unitats disponibles`}
           </p>
 
           {!esgotat && (
-            <div className="compraBloc">
+            <div className={estils.compraBloc}>
               <SelectorQuantitat
                 valor={quantitat}
                 minim={1}
@@ -70,7 +74,7 @@ export default function DetallProducte({ onAfegir }: Props) {
           )}
 
           {afegit && (
-            <p className="missatgeAfegit">
+            <p className={estils.missatgeAfegit}>
               ✓ Afegit al carret correctament!
             </p>
           )}

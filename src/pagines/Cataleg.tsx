@@ -1,9 +1,10 @@
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router';
+import clsx from 'clsx';
 import { PRODUCTES } from '../dades/productes';
 import TargetaProducte from '../components/TargetaProducte';
 import type { CategoryKey, Producte } from '../tipus';
-import './Cataleg.css';
+import estils from './Cataleg.module.css';
 
 type Props = {
   onAfegir: (producte: Producte) => void;
@@ -15,7 +16,6 @@ const CATEGORIES: { clau: CategoryKey; nom: string }[] = [
   { clau: 'camises', nom: 'Camises' },
   { clau: 'jerseys', nom: 'Jerseis' },
   { clau: 'pantalons', nom: 'Pantalons' },
-  { clau: 'vestits', nom: 'Vestits' },
   { clau: 'complements', nom: 'Complements' },
 ];
 
@@ -60,12 +60,12 @@ export default function Cataleg({ onAfegir }: Props) {
   }, [cerca, categoria]);
 
   return (
-    <div className="container">
+    <div className={estils.container}>
       {/* Capçalera del catàleg amb cercador */}
-      <div className="capcalera">
+      <div className={estils.capcalera}>
         <div>
-          <h1 className="titol">Catàleg de productes</h1>
-          <p className="subtitol">
+          <h1 className={estils.titol}>Catàleg de productes</h1>
+          <p className={estils.subtitol}>
             Mostrant {filtrats.length} de {PRODUCTES.length} peces
           </p>
         </div>
@@ -75,20 +75,21 @@ export default function Cataleg({ onAfegir }: Props) {
           value={cerca}
           onChange={(e) => canviaCerca(e.target.value)}
           placeholder="Cercar per nom..."
-          className="cercador"
+          className={estils.cercador}
         />
       </div>
 
       {/* Botons de categoria */}
-      <div className="categories">
+      <div className={estils.categories}>
         {CATEGORIES.map((cat) => (
           <button
             key={cat.clau}
             type="button"
             onClick={() => canviaCategoria(cat.clau)}
-            className={`botoCategoria ${
-              categoria === cat.clau ? 'actiu' : ''
-            }`.trim()}
+            className={clsx(
+              estils.botoCategoria,
+              categoria === cat.clau && estils.actiu,
+            )}
           >
             {cat.nom}
           </button>
@@ -97,13 +98,13 @@ export default function Cataleg({ onAfegir }: Props) {
 
       {/* Graella de productes o missatge de buit */}
       {filtrats.length > 0 ? (
-        <div className="graella">
+        <div className={estils.graella}>
           {filtrats.map((prod) => (
             <TargetaProducte key={prod.id} producte={prod} onAfegir={onAfegir} />
           ))}
         </div>
       ) : (
-        <div className="senseResultats">
+        <div className={estils.senseResultats}>
           <p>No s'ha trobat cap producte amb aquests filtres.</p>
         </div>
       )}

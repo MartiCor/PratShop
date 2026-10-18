@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Navigate, Link } from 'react-router';
+import clsx from 'clsx';
 import Boto from '../components/Boto';
 import { validar } from '../validacio';
 import type { DadesCompra, ErrorsCompra, LiniaCarro } from '../tipus';
-import './Compra.css';
+import estils from './Compra.module.css';
 
 type Props = {
   carro: LiniaCarro[];
@@ -27,17 +28,17 @@ export default function Compra({ carro, onFinalitzaCompra }: Props) {
   // Si la compra s'ha completat amb èxit, mostrem el missatge directe aquí
   if (compraCompletada) {
     return (
-      <div className="container">
-        <div className="exitCard">
-          <span className="material-symbols-outlined exitIcona">
+      <div className={estils.container}>
+        <div className={estils.exitCard}>
+          <span className={clsx('material-symbols-outlined', estils.exitIcona)}>
             check_circle
           </span>
-          <h1 className="exitTitol">Gràcies per la teva compra!</h1>
-          <p className="exitText">
+          <h1 className={estils.exitTitol}>Gràcies per la teva compra!</h1>
+          <p className={estils.exitText}>
             La comanda s'ha tramitat correctament a nom de <strong>{dades.nom}</strong>.
             T'hem enviat el comprovant al correu <strong>{dades.correu}</strong>.
           </p>
-          <div className="exitAccions">
+          <div className={estils.exitAccions}>
             <Link to="/">
               <Boto variant="secundari">Tornar a l'inici</Boto>
             </Link>
@@ -92,20 +93,20 @@ export default function Compra({ carro, onFinalitzaCompra }: Props) {
   }
 
   return (
-    <div className="container">
-      <h1 className="titol">Finalitzar la compra</h1>
+    <div className={estils.container}>
+      <h1 className={estils.titol}>Finalitzar la compra</h1>
 
-      <div className="grid">
+      <div className={estils.grid}>
         {/* Formulari controlat */}
         <form
           onSubmit={handleSubmit}
           noValidate
-          className="formulari"
+          className={estils.formulari}
           aria-label="Formulari de compra"
         >
           {/* Nom */}
-          <div className="camp">
-            <label htmlFor="nom" className="etiqueta">
+          <div className={estils.camp}>
+            <label htmlFor="nom" className={estils.etiqueta}>
               Nom complet *
             </label>
             <input
@@ -115,14 +116,16 @@ export default function Compra({ carro, onFinalitzaCompra }: Props) {
               value={dades.nom}
               onChange={handleChange}
               placeholder="Ex. Maria Garcia"
-              className={`input ${errors.nom ? 'inputError' : ''}`.trim()}
+              className={clsx(estils.input, errors.nom && estils.inputError)}
             />
-            {errors.nom && <span className="missatgeError">{errors.nom}</span>}
+            {errors.nom && (
+              <span className={estils.missatgeError}>{errors.nom}</span>
+            )}
           </div>
 
           {/* Correu */}
-          <div className="camp">
-            <label htmlFor="correu" className="etiqueta">
+          <div className={estils.camp}>
+            <label htmlFor="correu" className={estils.etiqueta}>
               Correu electrònic *
             </label>
             <input
@@ -132,16 +135,16 @@ export default function Compra({ carro, onFinalitzaCompra }: Props) {
               value={dades.correu}
               onChange={handleChange}
               placeholder="Ex. maria@example.cat"
-              className={`input ${errors.correu ? 'inputError' : ''}`.trim()}
+              className={clsx(estils.input, errors.correu && estils.inputError)}
             />
             {errors.correu && (
-              <span className="missatgeError">{errors.correu}</span>
+              <span className={estils.missatgeError}>{errors.correu}</span>
             )}
           </div>
 
           {/* Adreça */}
-          <div className="camp">
-            <label htmlFor="adreca" className="etiqueta">
+          <div className={estils.camp}>
+            <label htmlFor="adreca" className={estils.etiqueta}>
               Adreça de lliurament *
             </label>
             <input
@@ -151,16 +154,16 @@ export default function Compra({ carro, onFinalitzaCompra }: Props) {
               value={dades.adreca}
               onChange={handleChange}
               placeholder="Carrer, número, pis o porta"
-              className={`input ${errors.adreca ? 'inputError' : ''}`.trim()}
+              className={clsx(estils.input, errors.adreca && estils.inputError)}
             />
             {errors.adreca && (
-              <span className="missatgeError">{errors.adreca}</span>
+              <span className={estils.missatgeError}>{errors.adreca}</span>
             )}
           </div>
 
           {/* Codi Postal */}
-          <div className="camp">
-            <label htmlFor="codiPostal" className="etiqueta">
+          <div className={estils.camp}>
+            <label htmlFor="codiPostal" className={estils.etiqueta}>
               Codi Postal (5 xifres) *
             </label>
             <input
@@ -171,16 +174,16 @@ export default function Compra({ carro, onFinalitzaCompra }: Props) {
               value={dades.codiPostal}
               onChange={handleChange}
               placeholder="08001"
-              className={`input ${errors.codiPostal ? 'inputError' : ''}`.trim()}
+              className={clsx(estils.input, errors.codiPostal && estils.inputError)}
             />
             {errors.codiPostal && (
-              <span className="missatgeError">{errors.codiPostal}</span>
+              <span className={estils.missatgeError}>{errors.codiPostal}</span>
             )}
           </div>
 
           {/* Mètode de pagament */}
-          <div className="camp">
-            <label htmlFor="metodePagament" className="etiqueta">
+          <div className={estils.camp}>
+            <label htmlFor="metodePagament" className={estils.etiqueta}>
               Mètode de pagament *
             </label>
             <select
@@ -188,68 +191,66 @@ export default function Compra({ carro, onFinalitzaCompra }: Props) {
               name="metodePagament"
               value={dades.metodePagament}
               onChange={handleChange}
-              className={`select ${
-                errors.metodePagament ? 'inputError' : ''
-              }`.trim()}
+              className={clsx(estils.select, errors.metodePagament && estils.inputError)}
             >
               <option value="targeta">Targeta bancària (Crèdit / Dèbit)</option>
               <option value="bizum">Bizum</option>
               <option value="transferencia">Transferència bancària</option>
             </select>
             {errors.metodePagament && (
-              <span className="missatgeError">{errors.metodePagament}</span>
+              <span className={estils.missatgeError}>{errors.metodePagament}</span>
             )}
           </div>
 
           {/* Acceptació de condicions */}
-          <div className="campCheckbox">
-            <label className="labelCheckbox">
+          <div className={estils.campCheckbox}>
+            <label className={estils.labelCheckbox}>
               <input
                 id="acceptaCondicions"
                 name="acceptaCondicions"
                 type="checkbox"
                 checked={dades.acceptaCondicions}
                 onChange={handleChange}
-                className="checkbox"
+                className={estils.checkbox}
               />
               <span>
                 Accepto els termes i les condicions de compra de PratShop *
               </span>
             </label>
             {errors.acceptaCondicions && (
-              <span className="missatgeError">
+              <span className={estils.missatgeError}>
                 {errors.acceptaCondicions}
               </span>
             )}
           </div>
 
-          <Boto type="submit" variant="primari" className="botoEnviar">
+          <Boto type="submit" variant="primari" className={estils.botoEnviar}>
             <span className="material-symbols-outlined">lock</span>
             Confirmar i Pagar ({total.toFixed(2)} €)
           </Boto>
         </form>
 
         {/* Resum lateral */}
-        <aside className="resumAside">
-          <h2 className="resumTitol">Resum de la comanda</h2>
-          <ul className="resumLlista">
+        <aside className={estils.resumAside}>
+          <h2 className={estils.resumTitol}>Resum de la comanda</h2>
+          <ul className={estils.resumLlista}>
             {carro.map((linia) => (
-              <li key={linia.producte.id} className="resumLinia">
-                <div className="resumInfo">
-                  <span className="resumNom">{linia.producte.nom}</span>
-                  <span className="resumUnitats">
+              <li key={linia.producte.id} className={estils.resumLinia}>
+                <div className={estils.resumInfo}>
+                  <span className={estils.resumNom}>{linia.producte.nom}</span>
+                  <span className={estils.resumUnitats}>
                     {linia.unitats} × {linia.producte.preu.toFixed(2)} €
                   </span>
                 </div>
-                <span className="resumSubtotal">
+                <span className={estils.resumSubtotal}>
                   {(linia.unitats * linia.producte.preu).toFixed(2)} €
                 </span>
               </li>
             ))}
           </ul>
-          <div className="resumTotal">
+          <div className={estils.resumTotal}>
             <span>Total a pagar</span>
-            <span className="totalXifra">{total.toFixed(2)} €</span>
+            <span className={estils.totalXifra}>{total.toFixed(2)} €</span>
           </div>
         </aside>
       </div>

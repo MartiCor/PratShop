@@ -5,7 +5,6 @@ export type Categoria =
   | 'camises'
   | 'jerseys'
   | 'pantalons'
-  | 'vestits'
   | 'complements';
 
 export type CategoryKey = 'all' | Categoria;

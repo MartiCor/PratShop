@@ -1,29 +1,26 @@
-import React from 'react';
-import './Boto.css';
+import type { ComponentProps, ReactNode } from 'react';
+import clsx from 'clsx';
+import estils from './Boto.module.css';
 
-type Props = {
-  children: React.ReactNode;
+export type BotoProps = ComponentProps<'button'> & {
   variant?: 'primari' | 'secundari' | 'perill';
-  onClick?: () => void;
-  disabled?: boolean;
-  type?: 'button' | 'submit';
-  className?: string;
+  children: ReactNode;
 };
 
 export default function Boto({
-  children,
   variant = 'primari',
-  onClick,
-  disabled = false,
   type = 'button',
-  className = '',
-}: Props) {
+  disabled = false,
+  className,
+  children,
+  ...resta
+}: BotoProps) {
   return (
     <button
       type={type}
       disabled={disabled}
-      onClick={onClick}
-      className={`boto ${variant} ${className}`.trim()}
+      className={clsx(estils.boto, estils[variant], className)}
+      {...resta}
     >
       {children}
     </button>

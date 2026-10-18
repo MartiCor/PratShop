@@ -1,4 +1,4 @@
-import './SelectorQuantitat.css';
+import estils from './SelectorQuantitat.module.css';
 
 type Props = {
   valor: number;
@@ -14,20 +14,20 @@ export default function SelectorQuantitat({
   onCanvi,
 }: Props) {
   return (
-    <div className="caixa">
+    <div className={estils.caixa}>
       <button
         type="button"
-        className="boto"
+        className={estils.boto}
         disabled={valor <= minim}
         onClick={() => onCanvi(valor - 1)}
         aria-label="Restar una unitat"
       >
         −
       </button>
-      <span className="numero">{valor}</span>
+      <span className={estils.numero}>{valor}</span>
       <button
         type="button"
-        className="boto"
+        className={estils.boto}
         disabled={valor >= maxim}
         onClick={() => onCanvi(valor + 1)}
         aria-label="Sumar una unitat"
